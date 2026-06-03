@@ -41,15 +41,14 @@ const userSchema = new mongoose.Schema({
 });
 
 // A pre-save hook that runs automatically before a User document is saved into MongoDB
-userSchema.pre('save', async function(next) {
+userSchema.pre('save', async function() {
   // If the password field hasn't been changed (e.g. updating profile info), skip hashing
   if (!this.isModified('password')) {
-    return next();
+    return;
   }
   
   // Hash the password asynchronously using bcrypt with a salt round factor of 12
   this.password = await bcrypt.hash(this.password, 12);
-  next();
 });
 
 // A custom document helper method to compare a plain text candidate password with the user's stored hashed password
