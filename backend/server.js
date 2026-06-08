@@ -62,21 +62,22 @@ const apiLimiter = rateLimit({
 });
 
 // Use CORS middleware to allow cross-origin requests from any frontend URL
-// app.use(cors({ origin: '*' }));
-const allowedOrigins = [
-  'http://localhost:5173',
-  'https://intellmeet-4.vercel.app',   // ← your Vercel URL
-];
+app.use(cors({ origin: '*' }));
 
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
-}));
+// const allowedOrigins = [
+//   'http://localhost:5173',
+//   'https://intellmeet-4.vercel.app',   // ← your Vercel URL
+// ];
+
+// app.use(cors({
+//   origin: (origin, callback) => {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   }
+// }));
 // Use express.json middleware to automatically parse incoming JSON payloads in request bodies
 app.use(express.json());
 
