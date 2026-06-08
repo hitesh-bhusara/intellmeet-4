@@ -43,3 +43,5 @@ Thumbs.db
 *.sln
 *.swp
 *.swo
+.vercel
+.env*
